@@ -6,11 +6,15 @@
 
 **超立方体着色。** 把长度为 $d$ 的二进制串视为顶点，相差一位的两个串相连，得到超立方体 $Q_d$。全支配着色要求相邻顶点异色，并且每个顶点都与某种颜色的全部顶点相邻。若选取一些顶点，使每个顶点（包括被选的顶点）都与至少一个被选顶点相邻，就得到一个全支配集。全支配数 $\gamma_t(Q_d)$ 是这种集合的最小大小。
 
-**棱柱图的取等问题。** 把同一个图复制成两层，在对应顶点间连边，就得到它的棱柱图。2024 年，Alfred Raju M.、Palagiri 和 Yero 询问，棱柱图的覆盖全意大利支配数达到他们给出的上界时，底图的支配数是否必定等于最小点覆盖数。论文证明，对于无孤立点的底图，答案是肯定的。如果允许孤立点，四点完全图加上一个孤立点就是反例。[原问题，印刷第 341 页](https://rodin.uca.es/bitstream/handle/10498/35785/OA_2024_0987.pdf#page=9)
+**棱柱图的取等问题。** 把同一个图 $H$ 复制成两层，在对应顶点间连边，就得到棱柱图 $H\square K_2$。Alfred Raju M.、V. S. R. Palagiri 和 I. G. Yero 在 2024 年的 *On the total version of the covering Italian domination problem* 第 5.1 节询问，棱柱图的覆盖全意大利支配数达到定理 5.1 的上界时，底图的支配数是否必定等于最小点覆盖数。本文推论 4 证明，对非空、无孤立点的有限简单底图，答案是肯定的。如果允许孤立点，四点完全图加上一个孤立点就是反例。[原问题，第 341 页](https://rodin.uca.es/bitstream/handle/10498/35785/OA_2024_0987.pdf#page=9) · [本文推论 4，第 4 页](paper/preprint.pdf#page=4)
 
-## 文献与审读状态
+## 原问题与已有证明
 
-着色定理的两个维数族已有证明。Kazemi 处理了 $d=2^r$、$r\geq3$ 的情形，Gebendorfer 于 2026 年 10 月证明了 Kazemi 猜想 6.1 的全部情形，即 $d=2^r+1$、$r\geq2$。本文用 Gebendorfer 的色类计数和经典覆盖码界，把结论推广到所有 $d\geq4$。棱柱部分沿用了 Raju 等人的下界。英文稿第 2 节也列出能直接推出二分底图特例的早期文献。[Kazemi](https://doi.org/10.47443/cm.2025.102) · [Gebendorfer](https://doi.org/10.13140/RG.2.2.31321.28006) · [查新记录](notes/searches.tsv)
+**Kazemi 猜想 6.1。** Adel P. Kazemi 在 2026 年的 *Total dominator coloring of the hypercube* $Q_{2^n}$ 中证明了 $d=2^r$、$r\geq3$ 的情形，并对 $d=2^r+1$、$r\geq2$ 提出猜想。Jonas J. Gebendorfer 于同年 10 月在 *Total dominator colorings of hypercubes of dimension* $2^n+1$ 的定理 4.3 中证明了这个猜想。本文定理 1 用其色类计数和经典覆盖码界，把等式推广到所有 $d\geq4$。[Kazemi 原文](https://doi.org/10.47443/cm.2025.102) · [Gebendorfer 的证明](https://doi.org/10.13140/RG.2.2.31321.28006) · [推广的证明，第 4 节](paper/preprint.pdf#page=3)
+
+**更早的超立方体猜想。** Kazemi 于 2013 年在 Open Problem Garden 发表 *Total Dominator Chromatic Number of a Hypercube*，当时猜测每个 $d\geq5$ 都需要 $2^{d-2}+2$ 色。该页 2014 年的评论已指出旧公式在高维失效。代入六维，旧公式给出 18 色，本文定理 1 给出的确切值是 16 色。[原始问题与评论](https://www.openproblemgarden.org/op/total_dominator_chromatic_number_of_a_hypercube)
+
+**棱柱公式的相关工作。** 本文定理 2 沿用 Raju、Palagiri 和 Yero 的下界论证。二分底图的情形也可以由第 2 节列出的早期定理推出。对维数为二的幂的超立方体，公式还给出 Sonkamble、Patekar 和 Waphare 在第 460 页讨论的等式。[棱柱公式，第 2 节](paper/preprint.pdf#page=2) · [Sonkamble 等人的原文，第 460 页](https://pphmjopenaccess.com/aadm/article/download/4533/2173#page=10) · [查新记录](notes/searches.tsv)
 
 OpenAI 模型推导了文中的推广结论，完成了文献检索、撰稿、模型间交叉检查和 Lean 证明。Python 程序核验了下文列出的有限情形。本版尚待数学研究者独立审读。欢迎指出某条定理或某一步推导的问题，也欢迎提供在先文献。[提交或查看反馈](https://github.com/Saenai/hypercube-coloring-and-prisms/issues)
 
