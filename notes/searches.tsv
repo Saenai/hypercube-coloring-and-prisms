@@ -1,0 +1,17 @@
+Source	Query	2026-11-27 result	Reproducible request
+OpenAlex (two title filters)	total dominator AND hypercube	2 titles: Kazemi and Gebendorfer	https://api.openalex.org/works?filter=title.search:total%20dominator,title.search:hypercube
+OpenAlex (forward citations)	cites Kazemi 2026 / W7118302119	0 linked; Gebendorfer cites it in his actual bibliography	https://api.openalex.org/works?filter=cites:W7118302119
+OpenAlex (forward citations)	cites Gebendorfer 2026 / W7221791992	0 linked	https://api.openalex.org/works?filter=cites:W7221791992
+OpenAlex (forward citations)	cites Raju et al. 2024 / W4401045884	1 linked review; abstract read, full text unavailable for this audit	https://api.openalex.org/works?filter=cites:W4401045884
+OpenAlex (forward citations)	cites Sonkamble et al. 2026 / W7155535300	0 linked	https://api.openalex.org/works?filter=cites:W7155535300
+Crossref (DOI record)	Kazemi 2026	Reference metadata checked	https://api.crossref.org/works/10.47443/cm.2025.102
+Crossref (DOI record)	Raju et al. 2024	Reference metadata checked	https://api.crossref.org/works/10.1016/j.dam.2024.07.017
+Semantic Scholar (DOI record)	Raju et al. 2024	1 citing work in returned metadata	https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/j.dam.2024.07.017?fields=title,citationCount,citations.title
+DataCite (DOI record)	Gebendorfer	2026-10-14; published preprint	https://api.datacite.org/dois/10.13140/RG.2.2.31321.28006
+zbMATH Open (title)	total dominator	26 returned at the time of the check	https://api.zbmath.org/v1/document/_structured_search?Title=total+dominator&results_per_page=100
+arXiv API	total dominator AND hypercube(s), title/abstract	6 returned at the time of the check	https://export.arxiv.org/api/query?search_query=%28ti%3A%22total+dominator%22+OR+abs%3A%22total+dominator%22%29+AND+%28ti%3Ahypercube+OR+abs%3Ahypercube+OR+abs%3Ahypercubes%29&start=0&max_results=100
+DataCite (keyword search)	Title filter: dominator AND (hypercube* OR cube OR cubes)	1 records	https://api.datacite.org/dois?query=titles.title%3A%28dominator+AND+%28hypercube%2A+OR+cube+OR+cubes%29%29&page%5Bsize%5D=100
+DataCite (keyword search)	Gebendorfer + relevant title	1 records	https://api.datacite.org/dois?query=creators.name%3A%28Gebendorfer%29+AND+%28titles.title%3Ahypercub%2A+OR+titles.title%3Adominator%29&page%5Bsize%5D=100
+DataCite (keyword search)	Titles with Italian, domination and covering or total	5 records	https://api.datacite.org/dois?query=titles.title%3A%28Italian+AND+domination+AND+%28covering+OR+total%29%29&page%5Bsize%5D=100
+DataCite (keyword search)	Related mathematical terms combined with prism or hypercube	1 records	https://api.datacite.org/dois?query=%28%28%22covering+total+Italian%22+OR+%22total+co-independent%22+OR+%22total+vertex+cover%22%29+AND+%28prism+OR+prism%2A+OR+hypercube%2A%29%29&page%5Bsize%5D=100
+DataCite (keyword search)	Title stems prism* and domina*	41 records	https://api.datacite.org/dois?query=titles.title%3A%28prism%2A+AND+domina%2A%29&page%5Bsize%5D=100

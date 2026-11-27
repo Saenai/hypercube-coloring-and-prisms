@@ -1,0 +1,192 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Noto Serif CJK SC}
+\setsansfont{Noto Sans CJK SC}
+\newfontfamily\western{Noto Serif}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip=0pt plus 1pt
+\usepackage[margin=22mm,top=19mm,bottom=20mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,xcolor}
+\definecolor{ink}{HTML}{182830}
+\definecolor{accent}{HTML}{145D63}
+\usepackage[colorlinks=true,linkcolor=accent,urlcolor=accent,unicode]{hyperref}
+\hypersetup{pdftitle={超立方体的全支配着色与棱柱图},pdfsubject={研究说明与证明},pdfauthor={}}
+\setlength{\emergencystretch}{2em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4.5pt plus 1pt}
+\setlength{\abovedisplayskip}{6pt plus 1pt}
+\setlength{\belowdisplayskip}{6pt plus 1pt}
+\renewcommand{\baselinestretch}{1.12}
+\newcommand{\sect}[1]{\par\vspace{4pt}{\large\sffamily\bfseries\color{accent}#1}\par}
+\newcommand{\subh}[1]{\par\textbf{#1}\quad}
+\newcommand{\F}{\mathbb F}
+\newcommand{\B}{\mathcal B}
+\newcommand{\e}{\mathrm e}
+\newcommand{\finish}{\hfill$\square$}
+\begin{document}
+\color{ink}
+{\sffamily\bfseries\LARGE 超立方体的全支配着色}\par
+{\sffamily\small 从两个已知维数族到任意维数 \hfill 研究草稿，2026 年 11 月 27 日}
+\par\smallskip
+把长度为 $d$ 的二进制串作为顶点，把恰有一位不同的两个串相连，得到超立方体 $Q_d$。集合 $S$ 称为\textbf{全支配集}，若每个顶点都有邻点在 $S$ 中，包括 $S$ 自己的顶点。记最小全支配集大小为 $g_d=\gamma_t(Q_d)$。\textbf{全支配着色}要求相邻顶点异色，且每个顶点都与某一整种颜色的所有顶点相邻。记最少颜色数为 $t_d$。
+
+\sect{定理}
+对每个 $d\ge4$，有 $t_d=g_d+2$。特别地，当 $n\ge2$、$d=2^n+1$ 时，
+\[
+  \boxed{\quad t_{2^n+1}=2^{\,2^n-n+1}+2.\quad}
+\]
+Kazemi 证明了 $2^n$ 维的结论，并在猜想 6.1 中提出上述 $2^n+1$ 维的公式。Gebendorfer 已于 2026 年 10 月 14 日公开证明该猜想。本文研究其余维数，把这一等式推广至全部 $d\ge4$。\href{https://doi.org/10.47443/cm.2025.102}{Kazemi 原文}；\href{https://doi.org/10.13140/RG.2.2.31321.28006}{Gebendorfer 预印本，定理 4.3}
+
+\sect{为什么还需要两种颜色}
+写 $N=2^d$、$g=g_d$。给最小全支配集的 $g$ 个顶点各用一种颜色，其余顶点按串中 $1$ 的个数分为奇、偶两种颜色。每个顶点都看得到一个单点色类，这给出 $t_d\le g+2$。
+
+下述有效色类的两个观察见 Gebendorfer 的引理 4.1 和 4.2。
+
+对非空色类 $C$，写 $B(C)=\bigcap_{v\in C}N(v)$，其中 $N(v)$ 是开邻域。有公共邻点的色类称为有效。各个 $B(C)$ 的并覆盖全图；在每个有效类里任选一个代表，所得集合必全支配，故有效类至少有 $g$ 个。每个有效类还满足
+\[
+                |C|+|B(C)|\le d+1. \tag{1}
+\]
+两集合之间的边齐全。若一侧只有一点，另一侧至多 $d$ 点。若两侧都至少两点，每侧都至多两点，因为超立方体上两个不同顶点有共同邻点时，恰好相差两位，而共同邻点只有两个。此时两侧大小之和为 $4\le d+1$。
+
+\subh{计数引理}将 Gebendorfer 定理 4.3 证明中的式 (8)、(9) 及等号论证写成维数无关的形式，即得以下判据。若 $d\ge4$ 且 $(d+1)g\le 3N/2$，则 $t_d=g+2$。反设总共至多 $g+1$ 种颜色。若全部有效，对 (1) 求和得
+\[
+             2N\le(d+1)(g+1)\le 3N/2+d+1<2N,
+\]
+这里 $d+1<2^{d-1}$。否则恰有一个无效类 $D$ 和 $g$ 个有效类。独立集 $D$ 至多含一半顶点，可沿第一位把所有顶点配成相邻点对来数。若 $|D|=N/2$，与 $D$ 相连的 $d|D|$ 条边已经穷尽全图，补集也独立。补集中的顶点只能看到 $D$ 这一种颜色，它要看到一整类就必须与整个 $D$ 相邻，与 $D$ 无效矛盾。故 $|D|<N/2$，于是
+\[
+  3N/2<2N-|D|\le\sum_{C\ \text{有效}} \bigl(|C|+|B(C)|\bigr)\le(d+1)g\le3N/2.
+\]
+两个可能都矛盾，计数引理成立。\finish
+
+\subh{已知的特例}对 $d=2^n+1\ge5$，已知 $g=N/(d-1)$（原文定理 1.3，本文末页另给推导）。由于 $(d+1)/(d-1)\le3/2$，引理直接给出所猜公式。\finish
+
+\newpage
+\sect{推广到所有维数}
+只需让计数引理覆盖其余维数，再单独处理 $d=6$。令
+\[
+               p_d=\frac{g_d}{2^d},\qquad F(d)=(d+1)p_d.
+\]
+这里 $p_d$ 是全支配集所占的最小比例，引理的阈值为 $F(d)\le3/2$。
+
+\subh{维数翻倍}下面直接构造的上界，等价于覆盖码文献中的经典倍长界与添位构造。\href{https://doi.org/10.1109/TIT.1986.1057227}{Cohen、Lobstein 与 Sloane，定理 13}。若 $S$ 全支配 $Q_a$，设
+\[
+  T=\{(x,y)\in Q_a\times Q_a:\ x\oplus y\in S,\ 
+                       x\text{ 中 }1\text{ 的个数为偶数}\}.
+\]
+$\oplus$ 表示逐位模二相加。对固定的 $s\in S$，任选偶数重量的 $x$，就唯一确定 $y=x\oplus s$，所以 $|T|=2^{a-1}|S|$。给定任意 $(x,y)$，因 $S$ 全支配，可选一位 $i$，使 $x\oplus y$ 翻转第 $i$ 位后属于 $S$。若 $x$ 重量为奇，则翻 $x_i$；若为偶，则翻 $y_i$。这样一定到达 $T$ 中的一个邻点。再添一位任意的二进制位，$T\times\{0,1\}$ 就全支配 $Q_{2a+1}$。故
+\[
+ p_{2a},\,p_{2a+1}\le p_a/2,\qquad F(2a),\,F(2a+1)\le F(a). \tag{2}
+\]
+
+\subh{起始维数}若 $Q_r$ 中每个点到集合 $C$ 的最短距离至多为一，则称 $C$ 是\textbf{半径一覆盖码}。此时 $C\times\{0,1\}$ 全支配 $Q_{r+1}$。前 $r$ 位已经在 $C$ 中时，翻最后一位便得到邻点。下表中的两个短码用定长二进制串所代表的十进制整数列出。
+\begin{center}
+\small\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}c c c l@{}}\toprule
+$d$ & $p_d$ 上界 & $F(d)$ 上界 & 构造依据\\ \midrule
+4 & $1/4$ & $5/4$ & $\{000,111\}$ 覆盖 $Q_3$\\
+5 & $1/4$ & $3/2$ & 给四维全支配集添一个自由位\\
+6 & $7/32$ & $49/32$ & $Q_5$ 覆盖码 $\{0,13,14,15,19,20,24\}$\\
+7 & $12/64$ & $3/2$ & $Q_6$ 覆盖码 $\{0,3,13,17,22,26,37,41,46,50,60,63\}$\\
+12 & $7/64$ & $91/64$ & 对 $a=6$ 用 (2)\\
+13 & $384/4096$ & $21/16$ & 下一页的十二位覆盖码\\
+\bottomrule
+\end{tabular}
+\end{center}
+任意 $d\ge8$ 反复取 $\lfloor d/2\rfloor$，最后到 $4,5,6,7$ 中的一个。若最后到 $6$，则上一步必是 $12$ 或 $13$，这两个维数已分别处理。因此 (2) 和表中界给出 $F(d)\le3/2$，覆盖 $d\ge4$ 中除 $6$ 之外的所有维数。
+
+\subh{六维情形}此时 $N=64$、$g\le14$。若至多使用 $g+1$ 色且全部有效，则 (1) 给出 $128\le7\cdot15=105$，矛盾。若有一个无效类 $D$，则 $128-|D|\le7g\le98$，所以 $|D|\ge30$。设 $W=V\setminus D$。每个 $W$ 中的顶点必须与某个有效类的代表相邻，故 $W$ 内没有孤立点，至少有 $|W|/2$ 条边。另一方面 $D$ 独立，故
+\[
+         |E(W)|=6(32-|D|)\le12,\qquad |W|/2\ge16,
+\]
+其中第二式用到 $|D|\le32$。矛盾。这一正则图计数是已有一般界的特例。\href{https://doi.org/10.3390/math8020194}{Cabrera Martínez 等，定理 8}。配合下一页的覆盖构造，全部 $d\ge4$ 的定理得证。\finish
+
+\subh{维数四的分界}在 $d=1,2$ 时，两种奇偶颜色已足够，且 $t_d=g_d=2$。$Q_3$ 的两个奇偶侧各有四点，每点恰与对侧除其对跖点外的三点相邻。把每侧分为两对、每对用一种颜色，每个顶点都能看见对侧的完整一对，所以 $t_3\le4$。全支配集在每侧都至少需要两点，故 $4\le g_3\le t_3$。
+
+\newpage
+\sect{十二位覆盖码的构造}
+这里给出可逐点核验的旧构造。四元四位的 $24$ 词上界见 Stanton、Horton 与 Kalbfleisch；下文给出一种推导，再用二元三位组实现每种四元字母变化。\href{https://doi.org/10.1112/jlms/s2-1.1.493}{Covering theorems for vectors with special reference to the case of four and five components}
+从三元字母表 $\F_3$ 开始，考虑九个四字母串组成的线性码
+\[
+               H=\{(a,b,a+b,a-b):a,b\in\F_3\}.
+\]
+四个坐标函数的核是 $\F_3^2$ 中四条不同的过原点直线。八个非零点各恰在其中一条直线上，所以 $H$ 的每个非零码字恰有一个零坐标。由线性，任意两个不同码字的距离为三。因此以它们为中心的半径一球互不相交，每个球含 $1+4(3-1)=9$ 个串，总数 $9\cdot9=81=3^4$，恰好铺满。
+
+\subh{从三元到四元}把字母 $0$ 拆成 $0_0$ 和 $0_1$，保留 $1,2$。对每个非零码字，取它唯一零位的两个标记版本。对全零码字，取标记 $1$ 的个数为偶数的八个版本。共得到 $8\cdot2+8=24$ 个四元串。
+
+给定任意四元串，擦去标记，选与投影距离至多一的三元码字。若它非零，我们可以在其唯一零位选与给定串相同的标记（该位原本非零时任取），从而仍只差至多一位。若选到全零码字，则给定串至多有一位取 $1$ 或 $2$。若恰有一位，令该位的新标记补足偶数个 $0_1$，其余标记保持。若每位均为某个标记零，可按需改一位使奇偶性合适。故这 $24$ 个串覆盖全部 $4^4$ 个串。
+
+\subh{从四元到二元}把十二位二进制串分为四个三位组。每组按
+\[
+                 (x,y,z)\longmapsto(x+z,y+z)\in\F_2^2
+\]
+映到一个四元字母，任取 $\F_2^2$ 与四个字母的固定对应即可。每个字母有两个原像；翻转组内的第一、二、三位分别实现三种可能的非零变化。若需修改一个四元字母以到达上述四元码，只需在其对应的三位组翻一位。因此整个码的原像就是 $Q_{12}$ 的半径一覆盖码，大小为 $24\cdot2^4=384$。\finish
+
+此处只需一个足够小的构造。Wille 已于 1996 年给出更小的 $380$ 点上界。\href{https://doi.org/10.1109/18.481808}{L. T. Wille，IEEE Transactions on Information Theory}
+
+\sect{小规模独立核验}
+随稿的 \texttt{verify.py} 逐点计算上述覆盖码中，每个二进制串落在多少个半径一球内。所得非零频数如下。每行之和均等于空间大小。
+\begin{center}
+\small\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}c r r r r@{}}\toprule
+长度 & 覆盖一次 & 两次 & 三次 & 四次\\ \midrule
+5 & 24 & 6 & 2 & 0\\
+6 & 48 & 12 & 4 & 0\\
+12 & 3456 & 512 & 0 & 128\\ \bottomrule
+\end{tabular}
+\end{center}
+在猜想最小的维数 $5$，给前三位全相等的八个顶点各一种颜色，其余顶点按奇偶分两色，即可得到 $10$ 色。前三位不全相等时，翻其少数位即可到达单点色类；前三位全相等时，翻最后两位之一即可。程序已对全部 $32$ 个顶点检查着色条件。
+
+还可独立核对五维下界中最紧的一步。把每一奇偶侧按末页所述投影到 $Q_4$，枚举大小至多四的所有覆盖码。大小一至四的覆盖码数依次为 $0,0,0,40$；在这 $40$ 个码中，每个码字都有三个只由它覆盖的点。若用九色且其中一类无效，八个有效类各选一个代表，每一侧恰好得到一个四点覆盖码。每个代表单独负责的三个邻点都必须看见它的整个色类。若其中还有第二个同色顶点，这两个顶点就有三个共同邻点，矛盾。于是八类均为单点，剩下的 $24$ 点无法组成一个独立色类。全有效的情形已由 (1) 排除。
+
+\newpage
+\sect{已知的全支配数公式}
+为使显式解可以从头核对，这里给出第一部分所用已知等式的推导。记 $K(r)$ 为半径一覆盖 $Q_r$ 需要的最少码字数。删去最后一位，$Q_{r+1}$ 的奇、偶两侧分别与 $Q_r$ 一一对应。一个顶点的所有邻点都在另一侧，删位后得到它自己投影的整个闭半径一球。故全支配集的每一侧都必须投影为覆盖码，反过来分别用覆盖码填两侧也就得到全支配集。因此
+\[
+                        g_{r+1}=2K(r).
+\]
+这是 Azarija、Henning 与 {\western Klavžar} 的二分图棱柱公式在超立方体上的情形。\href{https://doi.org/10.37236/6288}{(Total) Domination in Prisms，2017}
+
+\subh{偶数长度的下界}设 $r$ 为正偶数，$C$ 覆盖 $Q_r$。写 $\B(v)$ 为闭半径一球，$f(v)=|\B(v)\cap C|$，$e(v)=f(v)-1\ge0$。若 $v\notin C$，则
+\[
+  \sum_{u\in\B(v)} f(u)=\sum_{c\in C}|\B(v)\cap\B(c)|
+\]
+为偶数，因为以不同点为中心的两个闭球交于零个或两个顶点。$|\B(v)|=r+1$ 为奇数，所以 $\sum_{u\in\B(v)}e(u)$ 是正奇数。对 $v\notin C$ 求和即得
+\[
+ 2^r-|C|
+ \le \sum_u e(u)\bigl(r+1-f(u)\bigr)
+ \le (r-1)\sum_u e(u)
+ = (r-1)\bigl((r+1)|C|-2^r\bigr).
+\]
+第二步用到 $e(u)>0$ 时 $f(u)\ge2$。整理给出 $|C|\ge2^r/r$。这是经典的偶长二元覆盖界。\href{https://doi.org/10.1109/18.2632}{G. J. M. van Wee，Improved Sphere Bounds on the Covering Radius of Codes，1988}
+
+\subh{当 $r=2^n$ 时达到下界}取一个二元矩阵，把 $\F_2^n$ 的所有非零列向量各排入一次。这个 $n\times(r-1)$ 矩阵 $H_0$ 满秩，核有 $2^{r-1}/r$ 个元素。任给 $x\in Q_{r-1}$，若 $H_0x\ne0$，找到等于 $H_0x$ 的列，翻 $x$ 的对应位就进入核。因此该核覆盖 $Q_{r-1}$。给核添一位任意二进制位，就覆盖 $Q_r$，大小为 $2^r/r$。综上
+\[
+            K(2^n)=\frac{2^{2^n}}{2^n},\qquad
+            g_{2^n+1}=\frac{2^{\,2^n+1}}{2^n}.
+\]
+结合 Gebendorfer 的定理，这给出 $Q_5,Q_9,Q_{17}$ 的全支配色数依次为 $10,66,8194$。
+
+\sect{问题出处与研究状态}
+A. P. Kazemi，{\western\itshape Total Dominator Coloring of the Hypercube} $Q_{2^n}$，{\western\itshape Contributions to Mathematics} 13 (2026)，1–10，2026 年 1 月 7 日在线发表。定理 1.3 给全支配数，定理 5.1 处理 $2^n$ 维的着色，猜想 6.1 提出 $2^n+1$ 维的着色问题。\href{https://doi.org/10.47443/cm.2025.102}{期刊 DOI}
+
+Kazemi 在 2014 年的 {\western\itshape Total Dominator Coloring in Product Graphs} 第 4 节已给出上下界、小维数值及公共邻点分型。\href{https://combinatorialpress.com/um/vol94/}{Utilitas Mathematica 94，329–345}。同一作者在 2013 年曾针对所有 $d\ge5$ 提出 $t_d=2^{d-2}+2$，后来被反驳。例如在 $d=6$，已知 $g_6=14$，故本定理给出 $t_6=16$；2013 年的公式给出 $18$。\href{https://www.openproblemgarden.org/op/total_dominator_chromatic_number_of_a_hypercube}{2013 年原帖与讨论}
+
+初稿漏引了 Gebendorfer 的在先预印本。本版已补引，包括其一般性有效类引理和五维边界论证。截至 2026 年 11 月 27 日，在查阅的文献中未检出所有 $d\ge4$ 的结论。本稿的数学推导、初稿和分支复核均由 AI 完成，尚未经外部同行评审。
+
+\newpage
+\sect{棱柱图与一个 2024 年的公开问题}
+取两份有限简单图 $H$，把对应顶点连起来，得到棱柱图 $P=H\mathbin{\square}K_2$。设 $H$ 无孤立点，阶数为 $n\ge2$，$\gamma(H)$ 为最小支配集大小，$\alpha(H)$ 为最大独立集大小。一个集合是支配集，指其外每个点都与集合中某点相邻。写 $T(P)$ 为补集非空且独立的最小全支配集大小。写
+\[
+ b(H)=\min\{\,|B|: B\text{ 支配 }H,\ H-B\text{ 可以二着色}\,\}.
+\]
+那么 $T(P)=n+b(H)$。具体地，每对对应顶点至少取一个。令 $B$ 是两个都取的点对在 $H$ 中的位置。若在 $u$ 处只取了 $(u,i)$，它必须与另一处被选的 $(v,i)$ 相邻。因 $(u,1-i)$ 未被选，与它相邻的 $(v,1-i)$ 也必须被选，故 $v\in B$。由此 $B$ 支配 $H$，这是 Raju、Palagiri 与 Yero 在定理 5.1 已用的论证。相邻的两个单点组必须取不同层，否则未取的两点相邻。因此 $H-B$ 可以二着色。反过来，给定满足条件的 $B$，在它的每一组中取两点，其余各组依照 $H-B$ 的二着色取一层。未取的顶点独立，每个单点组可在相邻的双点组中找到同层邻点。这个构造恰取 $n+|B|$ 个顶点。取最小点覆盖作为 $B$ 可知 $b(H)<n$，故最优构造的补集非空。\finish
+
+\subh{原文第 341 页的问题}Raju 等研究的覆盖全意大利支配数，在 $P$ 的最小度至少为二时等于 $T(P)$。他们证明 $n+\gamma(H)\le T(P)\le 2n-\alpha(H)$，并问达到右端是否必有 $\gamma(H)=n-\alpha(H)$。对无孤立点的底图，答案为肯定。\href{https://doi.org/10.1016/j.dam.2024.07.017}{原文定理 2.3、5.1 及第 341 页的问题}
+
+取最大独立集 $I$，令 $C=V(H)\setminus I$。若 $T(P)=n+|C|$，则 $b(H)=|C|$。设 $x\in C$ 在 $C$ 内有邻点。若没有任何 $I$ 中的一度顶点以 $x$ 为唯一邻点，那么 $C-\{x\}$ 仍支配 $H$，且删去它后只剩独立集 $I$ 加一个点，当然可以二着色。这与 $b(H)=|C|$ 矛盾。故每个这样的 $x$ 都与 $I$ 中一片叶子相邻。可以取一个含有所有这些 $x$ 的最小支配集 $S$；遗漏了某个 $x$，就用它替换一片已选的相邻叶子。各片叶子只有一个邻点，这些替换可以同时进行。此时 $C-S$ 和 $I-S$ 都是独立集，故 $S$ 是 $b(H)$ 定义中的候选集，得到 $b(H)=\gamma(H)=n-\alpha(H)$。反方向由原文的两条界直接给出。\finish
+
+若允许底图有孤立点，取 $H=K_4\sqcup K_1$，此时 $n=5,\alpha=2,\gamma=2$。其棱柱由 $K_4$ 的棱柱及一条孤立边组成。在前一分量每层至多一个零标号，两零放在不同点对、其余标一可达权重六。后一分量两端均须为正，权重二。总权重八恰等于 $2n-\alpha$，而 $\gamma\ne n-\alpha$。这说明无孤立点这个条件有实际作用。
+
+\subh{回到超立方体}当 $H$ 二分时 $b(H)=\gamma(H)$。这个二分情形也能直接合用 2017 年的棱柱全支配数公式、2021 年的二分图上界和 2024 年的棱柱下界推出。取 $H=Q_{d-1}$ 得 $T(Q_d)=2^{d-1}+\gamma(Q_{d-1})$。这给出了 Sonkamble、Patekar 与 Waphare 在同页既写入定理又列为猜想的二幂维等式的证明。\href{https://doi.org/10.1016/j.dam.2021.01.027}{Mojdeh 等，定理 4.10}；\href{https://pphmjopenaccess.com/aadm/article/download/4533/2173\#page=10}{2026 年论文，第 460 页}
+
+\end{document}

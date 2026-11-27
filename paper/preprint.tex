@@ -1,0 +1,427 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Total dominator colorings of hypercubes and total co-independent domination in prisms},
+            pdfauthor={},
+            pdfsubject={Research preprint, prepared for contributor review}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\coi}{\gamma_{t,\mathrm{coi}}}
+\newcommand{\boxprod}{\mathbin{\square}}
+\newcommand{\td}{\chi_{\mathrm{td}}}
+\newcommand{\F}{\mathbb F}
+\newcommand{\wt}{\operatorname{wt}}
+\title{Total dominator colorings of hypercubes and total co-independent domination in prisms}
+% Enter the credited human contributor(s) before a public deposit.
+\author{}
+\date{Working draft, 27 November 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove that the total dominator chromatic number of the binary
+hypercube $Q_d$ is $\gamma_t(Q_d)+2$ for every $d\ge4$, where $\gamma_t$
+denotes the total domination number. This extends the dimension families
+treated by Kazemi and by Gebendorfer. The proof combines Gebendorfer's
+color-class count with bounds on radius-one covering codes and on
+total dominating vertex covers. For a prism over a graph $H$ without
+isolated vertices, we show that the minimum size of a total dominating
+vertex cover is $|V(H)|$ plus the least size of a dominating set $S$
+such that $H-S$ is bipartite. As a consequence, a question of Alfred Raju M.,
+Palagiri and Yero about equality in their prism upper bound has an
+affirmative answer for bases without isolated vertices. Allowing isolated
+vertices gives a counterexample on five vertices.
+\end{abstract}
+
+\section{The coloring problem}
+
+The vertices of $Q_d$ are the binary words of length $d$, with two words
+adjacent when they differ in one coordinate. A set $S$ is \emph{total
+dominating} if every vertex, including every vertex of $S$, has a neighbor in
+$S$. Write $g_d=\gamma_t(Q_d)$ for the minimum size of such a set. A
+\emph{total dominator coloring} is a proper coloring in which every vertex is
+adjacent to all vertices of at least one color class. Write $t_d=\td(Q_d)$
+for the least number of colors.
+
+Kazemi proved $g_d\le t_d\le g_d+2$ and determined $t_d$ for $d\le4$
+\cite[Propositions 4.3 and 4.9]{kazemi14}. In 2026 he proved that the
+upper bound is attained in dimensions $2^n$ for $n\ge3$ and conjectured
+that it is attained in dimensions $2^n+1$ for $n\ge2$
+\cite[Theorem 5.1 and Conjecture 6.1]{kazemi26}.
+Gebendorfer proved that conjecture in October 2026
+\cite[Theorem 4.3]{geben}. The known total domination number
+\cite[Corollary 13]{prisms}, also recorded in \cite[Theorem 1.3]{kazemi26}, gives
+$t_{2^n+1}=2^{2^n-n+1}+2$.
+
+\begin{theorem}\label{thm:main}
+For every integer $d\ge4$, one has $\td(Q_d)=\gamma_t(Q_d)+2$.
+\end{theorem}
+
+For a general dimension, a coloring with at most $g_d+1$ colors has at
+most one color class with no common neighbor, by Gebendorfer's argument.
+If there is such a class, its complement is both a total dominating set
+and a vertex cover. We first determine the smallest size of such a
+complement on a prism. This supplies the lower bound in the coloring
+problem, including the exceptional estimate needed for $d=6$.
+The earlier prediction $t_d=2^{d-2}+2$ for all $d\ge5$
+\cite[Conjecture 4.10]{kazemi14} already fails for $d=6$.
+Indeed, $g_6=14$ by the prism identity \cite{prisms} and the known
+domination number of $Q_5$ \cite[Table 1.1]{kazemi26}, so even the
+previous upper bound is 16. Theorem~\ref{thm:main} gives equality.
+
+\section{Total co-independent domination in prisms}
+
+A \emph{total co-independent dominating set} is a total dominating set
+whose complement is a nonempty independent set. Write $\coi(G)$ for its
+minimum size. The ordinary domination number $\gamma(H)$ is the minimum
+size of a set containing a neighbor of each vertex outside it. The prism $H\boxprod K_2$ has two layers indexed by $0,1$ and a
+vertical edge between the two copies of each vertex of $H$.
+
+For graphs $H$ without isolated vertices, Alfred Raju M., Palagiri and
+Yero proved the following bounds, stated in terms of the covering total
+Italian domination number. Their Theorem~2.3 identifies that parameter
+with $\coi$ when the minimum degree is at least two, as it is in the prism
+\cite[Theorems 2.3 and 5.1]{italian}. If $H$ has order $m$ and
+independence number $\alpha(H)$, their bounds are
+\begin{equation}\label{eq:oldprism}
+ m+\gamma(H)\le\coi(H\boxprod K_2)\le 2m-\alpha(H).
+\end{equation}
+For paths, Dutton and Klostermeyer determined the total vertex cover
+number of the ladder and observed that neighboring fibers with one
+selected vertex must use opposite layers \cite[Proposition 30]{dutton}.
+The following formula keeps track of this choice of layer in the
+lower-bound proof of \eqref{eq:oldprism}.
+
+\begin{theorem}\label{thm:prism}
+Let $H$ be a nonempty finite graph without isolated vertices and put
+$m=|V(H)|$. Then
+\[
+  \coi(H\boxprod K_2)
+  =m+\min\{|S|: S\text{ dominates }H\text{ and }H-S\text{ is bipartite}\}.
+\]
+In particular, for bipartite $H$ this is $m+\gamma(H)$.
+\end{theorem}
+
+\begin{proof}
+Let $T$ be a total co-independent dominating set of the prism. It covers
+each vertical edge. Let $S$ consist of those $u$ for which both copies
+belong to $T$. Thus $|T|=m+|S|$. We recall the double-fiber observation
+from the proof of \cite[Theorem 5.1]{italian}. For $u\notin S$, let
+$(u,i)$ be its unique copy in $T$. Its neighbor in $T$ must be a
+horizontal neighbor $(v,i)$. The edge from $(u,1-i)$ to $(v,1-i)$
+forces $(v,1-i)\in T$ as well, hence $v\in S$. This proves that $S$
+dominates $H$. Moreover, the layer of the omitted copy of each vertex
+of $H-S$ gives a proper two-coloring, since omitted vertices are
+independent.
+
+Conversely, take a minimizing $S$ and a proper two-coloring of $H-S$.
+Keep both copies of each vertex in $S$, and omit just the copy in
+the assigned layer for each vertex of $H-S$. The omitted vertices
+are independent. Every vertex over $S$ has its vertical mate in the set.
+Every omitted vertex also has its mate in the set. Every remaining vertex
+over $u\notin S$ has a horizontal neighbor over $S$ by domination.
+The complement is nonempty since deleting all but any one vertex of $H$
+gives an admissible choice of size $m-1$. This proves the reverse bound.
+\end{proof}
+
+For bipartite $H$, equality in the lower bound of \eqref{eq:oldprism}
+also follows by combining earlier results. Applied to
+$X=H\boxprod K_2$, the bipartite bound of Mojdeh et al.\ gives
+$\coi(X)\le (|V(X)|+\gamma_t(X))/2$ since $\delta(X)\ge2$
+\cite[Theorem 4.10 in the preprint]{mojdeh}. The bipartite prism
+identity of Azarija, Henning and Klav\v{z}ar gives
+$\gamma_t(X)=2\gamma(H)$ \cite{prisms}, and \eqref{eq:oldprism}
+provides the matching lower bound.
+
+Thus for $d\ge2$,
+\begin{equation}\label{eq:coicube}
+  \coi(Q_d)=2^{d-1}+\gamma(Q_{d-1})=(2^d+g_d)/2.
+\end{equation}
+The second equality also has a direct verification. Deleting the last
+coordinate takes each
+parity side of $Q_d$ bijectively onto $Q_{d-1}$ and maps each open
+neighborhood onto a closed ball of radius one. Thus a total dominating
+set projects on each side to a dominating set of $Q_{d-1}$, and using a
+minimum dominating set on each side gives equality.
+
+Formula~\eqref{eq:coicube} gives a proof of the equality that Sonkamble,
+Patekar and Waphare state both in Theorem~3.1 and as a conjecture on the
+same page \cite[p.~460]{sonkamble}. For $d=2^r$ with $r\ge1$, the classical binary
+Hamming code covers $Q_{d-1}$ with $2^{d-1}/d$ words. Its parity-check
+matrix consists of the nonzero $r$-bit columns, so every nonzero syndrome
+can be corrected by one bit flip. No smaller code can cover, since each
+closed ball has $d$ words. Hence $\coi(Q_d)=2^{d-1}+2^{d-1}/d$.
+
+\section{Counting vertices and common neighbors}
+
+Use the notation $N(v)$ for the open neighborhood of $v$. For a nonempty
+color class $C$, let $B(C)=\bigcap_{v\in C}N(v)$, and call $C$ active
+if $B(C)$ is nonempty. The open neighborhoods of two distinct cube
+vertices intersect only when the vertices are at distance two, in which
+case their intersection has size two. This observation underlies Kazemi's
+classification of the possible common neighborhoods
+\cite[proof of Proposition 4.2]{kazemi14}, \cite[Fact 5.1]{kazemi26}.
+Gebendorfer expressed it in the following form for every active class and
+$d\ge3$ \cite[Lemma 4.1]{geben}.
+\begin{equation}\label{eq:local}
+                   |C|+|B(C)|\le d+1.
+\end{equation}
+Indeed, if either set is a singleton, the other has at most $d$ elements.
+If both have at least two elements, all edges between the two sets are
+present, so each set has at most two elements.
+
+\begin{lemma}\label{lem:count}
+Let $d\ge4$, $N=2^d$, and $g=g_d$. A total dominator coloring of $Q_d$
+with at most $g+1$ colors implies at least one of the two inequalities
+\begin{align}
+                  (d+1)(g+1)&\ge2N,\label{eq:all}\\
+                       (2d+1)g&\ge3N.\label{eq:one}
+\end{align}
+In particular, $(d+1)g\le 3N/2$ implies $t_d=g+2$.
+\end{lemma}
+
+\begin{proof}
+We follow the two cases in Gebendorfer's proof of Theorem~4.3
+\cite{geben}. The sets $B(C)$ cover the vertex set. Selecting one
+representative from each active class gives a total dominating set,
+so there are at least $g$ active classes \cite[Lemma 4.2]{geben}. If every class is active, summing \eqref{eq:local}
+counts all $N$ vertices as members of classes and at least $N$ vertices as
+common neighbors. This gives \eqref{eq:all}.
+
+Otherwise there are exactly $g$ active classes and one inactive class $D$.
+Put $W=V(Q_d)\setminus D$. Every vertex has a neighbor among the
+representatives of active classes, all of which lie in $W$. As $D$ is
+independent, $W$ is a total co-independent dominating set. A general
+degree bound of Cabrera-Mart\'inez et al.\ \cite[Theorem 8, $k=1$]{outer}
+gives $|W|\ge dN/(2d-1)$. Here \eqref{eq:coicube} gives
+$|W|\ge (N+g)/2$. Summing \eqref{eq:local} over the active classes
+yields $(d+1)g\ge N+|W|\ge(3N+g)/2$, proving \eqref{eq:one}.
+
+If $(d+1)g\le3N/2$, then $(d+1)(g+1)<2N$ since $d+1<N/2$,
+and $(2d+1)g\le3N-g<3N$. For the matching upper bound,
+give every vertex of a minimum total dominating set its own color and
+color the remaining vertices by parity using two additional colors.
+Every vertex sees a singleton class.
+\end{proof}
+
+\section{The dimension estimate}
+
+Write $K(r,1)=\gamma(Q_r)$ for the smallest number of binary
+words whose closed radius-one balls cover $Q_r$. The prism identity
+above reads $g_{r+1}=2K(r,1)$.
+
+Set $p_d=g_d/2^d$ and $F(d)=(d+1)p_d$. A total dominating set remains
+total dominating after a free binary coordinate is appended to its
+vertices. For doubling the dimension we use the classical construction
+of Mollard and of Katsman and Litsyn, as recorded by Cohen, Lobstein
+and Sloane \cite[Theorem 13]{cls}. In covering-code notation it gives
+$K(2r+1,1)\le2^rK(r,1)$. Here is the corresponding construction for
+total domination. If $S$ totally dominates $Q_a$, put
+\[
+  T=\{(x,y)\in \F_2^a\times\F_2^a:
+           x+y\in S,\ \wt(x)\equiv0\pmod 2\}.
+\]
+For each $s\in S$ and each even-weight $x$ there is exactly one choice of
+$y$, so $|T|=2^{a-1}|S|$. Given $(x,y)$, choose a unit vector $e_i$
+such that $x+y+e_i\in S$. If $x$ has odd weight, flip $x_i$. If $x$
+has even weight, flip $y_i$. The resulting neighbor belongs to $T$ in
+either case. Consequently
+\begin{equation}\label{eq:double}
+  p_{2a},\ p_{2a+1}\le \tfrac12p_a,
+  \qquad F(2a),\ F(2a+1)\le F(a).
+\end{equation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The two words $000,111$ cover $Q_3$, giving $p_4\le1/4$ and
+$p_5\le1/4$ by free extension. The bounds $K(5,1)\le7$ and
+$K(6,1)\le12$ give $p_6\le7/32$ and $p_7\le12/64$.
+The short codes are recorded below. Thus $F(d)\le3/2$ for $d=4,5,7$.
+
+For $d=6$, $g=2K(5,1)\le14$.
+Then $7(g+1)\le105<128$ and $13g\le182<192$. Neither alternative in
+Lemma~\ref{lem:count} can hold, giving $t_6=g+2$.
+
+In dimension $12$, \eqref{eq:double} gives $F(12)\le13\cdot7/64<3/2$.
+In dimension $13$ we use Wille's 1996 bound $K(12,1)\le380$ \cite{wille}.
+It gives $F(13)\le14\cdot380/4096=665/512<3/2$.
+For $d\ge8$ other than $12$ and $13$, the index
+$a=\lfloor d/2\rfloor$ is at least four and differs from six.
+Strong induction using \eqref{eq:double} gives $F(d)\le3/2$ for every
+$d\ge4$ except six. Lemma~\ref{lem:count} finishes the proof.
+\end{proof}
+
+\section{Equality in the prism upper bound}
+
+After proving \eqref{eq:oldprism}, Alfred Raju M., Palagiri and Yero
+asked whether attaining its upper bound forces $\gamma(H)=m-\alpha(H)$
+\cite[Section 5.1, p.~341]{italian}. For bases without isolated vertices,
+the answer is affirmative. The characterization of graphs whose domination and
+vertex cover numbers coincide is classical. Lingas et al.\ describe the
+role of leaf neighbors of a minimum vertex cover under that equality
+\cite[Theorem 1]{lingas}. We use this property under the prism equality below.
+
+\begin{corollary}\label{cor:upper}
+Under the hypotheses of Theorem~\ref{thm:prism},
+$\coi(H\boxprod K_2)=2m-\alpha(H)$ if and only if
+$\gamma(H)=m-\alpha(H)$.
+\end{corollary}
+
+\begin{proof}
+If $\gamma(H)=m-\alpha(H)$, the two bounds in \eqref{eq:oldprism}
+coincide. Conversely, assume equality in the upper bound. Choose a
+maximum independent set $I$ and let $C=V(H)\setminus I$. By
+Theorem~\ref{thm:prism}, the smallest dominating set whose deletion
+leaves a bipartite graph has size $|C|$.
+
+Suppose $x\in C$ has a neighbor in $C$. If $x$ had no degree-one
+neighbor in $I$, then $C\setminus\{x\}$ would still dominate $H$.
+Indeed, $x$ has a neighbor in this set. Each vertex of $I$ has a neighbor
+in $C$, and only a leaf joined to $x$ could lose its last such neighbor.
+The complement
+$I\cup\{x\}$ is bipartite, contradicting minimality of $|C|$.
+Thus each vertex incident with an edge of $H[C]$ has a leaf neighbor in $I$.
+
+A minimum dominating set $S$ of $H$ can be chosen to contain all these
+vertices. Whenever such a vertex is missing, its leaf neighbor must lie in
+$S$, and replacing that leaf by its neighbor preserves domination.
+The replacements discard only vertices of $I$. Now both $I\setminus S$
+and $C\setminus S$ are independent, so $H-S$ is bipartite. The minimum
+in Theorem~\ref{thm:prism} is therefore $\gamma(H)$, proving
+$\gamma(H)=|C|=m-\alpha(H)$.
+\end{proof}
+
+If the question for the covering total Italian domination number is read
+as allowing isolated vertices in the base, take $H=K_4\sqcup K_1$.
+Its prism has covering total Italian domination number $6+2=8$.
+For clarity, an admissible labeling assigns $0,1,2$ to the vertices.
+The zeros must be independent and have neighbor-label sum at least two,
+and the positive vertices must totally dominate. In $K_4\boxprod K_2$
+each layer has at most one zero, so weight at least six is required.
+Putting a zero in each layer in different fibers and assigning one to
+the other six vertices attains it. Both vertices of the $K_2$ component
+require a positive neighbor, giving weight two. Consequently the optimum weight is
+$2m-\alpha(H)=8$, although
+$\gamma(H)=2<3=m-\alpha(H)$. In fact the minimization in
+Theorem~\ref{thm:prism} still computes the covering total Italian
+domination number when the base has isolates. Each isolated base vertex
+adds one to $m$, must lie in every dominating set, and contributes a
+$K_2$ of optimum weight two to the prism. If the base consists entirely of
+isolates, the same count gives weight $2m$.
+
+\section*{Short covering certificates}
+
+The covering numbers at lengths five and six are classical
+\cite{cls,kazemi26}. The following sets give short certificates for the
+upper bounds used in the proof.
+
+For $r=5,6$, write a word as a prefix $u$ and a three-bit suffix. Encode
+both as integers, with leading zeroes understood. The entry $S_u$ lists
+the suffixes of the codewords with prefix $u$. The entry $U_u$ lists the
+suffixes outside the closed radius-one balls of $S_u$ in $Q_3$. A string of
+digits in the table lists a set of individual digits.
+\begin{center}
+\begin{tabular}{cc@{\qquad}rrrrrrrr}
+\toprule
+$r$ && $u=0$ & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+\midrule
+5 & $S_u$ & $0$ & $567$  & $34$ & $0$ \\
+  & $U_u$ & $3567$ & $0$ & $\varnothing$ & $3567$ \\
+\midrule
+6 & $S_u$ & $03$ & $5$ & $16$ & $2$ & $5$ & $16$ & $2$ & $47$ \\
+  & $U_u$ & $56$ & $0236$ & $\varnothing$ & $1457$ &
+                  $0236$ & $\varnothing$ & $1457$ & $12$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+In each column every digit in $U_u$ occurs in an $S_v$ whose prefix
+$v$ differs from $u$ in one bit. This verifies coverage. Counting the
+digits in the two $S_u$ rows gives seven and twelve codewords.
+
+\paragraph{AI disclosure.}
+OpenAI language models derived the extensions presented here, searched the
+literature and drafted the manuscript. Separate model instances checked
+the proofs. Computations verified the short covering certificates and
+the prism results on all 814 labelled graphs of orders two through five
+without isolated vertices, including exhaustive checks of the ternary
+labels on their prisms. No independent human review has been recorded
+for this version.
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{prisms}
+J.~Azarija, M.~A.~Henning and S.~Klav\v{z}ar,
+(Total) domination in prisms,
+\emph{Electron. J. Combin.} \textbf{24} (2017), P1.19.
+\href{https://doi.org/10.37236/6288}{doi:10.37236/6288}.
+
+\bibitem{outer}
+A.~Cabrera-Mart\'inez, J.~C.~Hern\'andez-G\'omez, E.~Parra-Inza and
+J.~M.~Sigarreta Almira, On the total outer $k$-independent domination
+number of graphs, \emph{Mathematics} \textbf{8} (2020), 194.
+\href{https://doi.org/10.3390/math8020194}{doi:10.3390/math8020194}.
+
+\bibitem{cls}
+G.~D.~Cohen, A.~C.~Lobstein and N.~J.~A.~Sloane,
+Further results on the covering radius of codes,
+\emph{IEEE Trans. Inform. Theory} \textbf{32} (1986), 680--694.
+\href{https://doi.org/10.1109/TIT.1986.1057227}{doi:10.1109/TIT.1986.1057227}.
+
+\bibitem{dutton}
+R.~Dutton and W.~F.~Klostermeyer, Edge dominating sets and vertex covers,
+\emph{Discuss. Math. Graph Theory} \textbf{33} (2013), 437--456.
+\href{https://doi.org/10.7151/dmgt.1681}{doi:10.7151/dmgt.1681}.
+
+\bibitem{geben}
+J.~J.~Gebendorfer, Total dominator colorings of hypercubes of dimension
+$2^n+1$, preprint, 14 October 2026.
+\href{https://doi.org/10.13140/RG.2.2.31321.28006}{doi:10.13140/RG.2.2.31321.28006}.
+\href{https://www.researchgate.net/publication/415823778_Total_dominator_colorings_of_hypercubes_of_dimension_2_n_1}{Preprint}.
+
+\bibitem{kazemi14}
+A.~P.~Kazemi, Total dominator coloring in product graphs,
+\emph{Util. Math.} \textbf{94} (2014), 329--345.
+\href{https://combinatorialpress.com/um/vol94/}{Journal volume}.
+
+\bibitem{kazemi26}
+A.~P.~Kazemi, Total dominator coloring of the hypercube $Q_{2^n}$,
+\emph{Contrib. Math.} \textbf{13} (2026), 1--10.
+\href{https://doi.org/10.47443/cm.2025.102}{doi:10.47443/cm.2025.102}.
+
+\bibitem{lingas}
+A.~Lingas, M.~Miotk, J.~Topp and P.~\.{Z}yli\'nski,
+Graphs with equal domination and covering numbers,
+\emph{J. Comb. Optim.} \textbf{39} (2020), 55--71.
+\href{https://doi.org/10.1007/s10878-019-00454-6}{doi:10.1007/s10878-019-00454-6}.
+
+\bibitem{mojdeh}
+D.~A.~Mojdeh, I.~Peterin, B.~Samadi and I.~G.~Yero,
+On three outer-independent domination related parameters in graphs,
+\emph{Discrete Appl. Math.} \textbf{294} (2021), 115--124.
+\href{https://doi.org/10.1016/j.dam.2021.01.027}{doi:10.1016/j.dam.2021.01.027}.
+\href{https://arxiv.org/abs/1812.10946}{Preprint}.
+
+\bibitem{italian}
+Alfred Raju M., V.~S.~R.~Palagiri and I.~G.~Yero,
+On the total version of the covering Italian domination problem,
+\emph{Discrete Appl. Math.} \textbf{358} (2024), 333--343.
+\href{https://doi.org/10.1016/j.dam.2024.07.017}{doi:10.1016/j.dam.2024.07.017}.
+
+\bibitem{sonkamble}
+R.~A.~Sonkamble, S.~C.~Patekar and B.~N.~Waphare,
+Total co-independent domination in Cartesian product of graphs with
+hypercubes and its variants, \emph{Adv. Appl. Discrete Math.}
+\textbf{43} (2026), 451--467.
+\href{https://doi.org/10.17654/0974165826029}{doi:10.17654/0974165826029}.
+
+\bibitem{wille}
+L.~T.~Wille, New binary covering codes obtained by simulated annealing,
+\emph{IEEE Trans. Inform. Theory} \textbf{42} (1996), 300--302.
+\href{https://doi.org/10.1109/18.481808}{doi:10.1109/18.481808}.
+
+\end{thebibliography}
+\end{document}
