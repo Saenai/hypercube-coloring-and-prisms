@@ -6,7 +6,7 @@
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={Total dominator colorings of hypercubes and total co-independent domination in prisms},
             pdfauthor={},
-            pdfsubject={Research preprint, prepared for contributor review}}
+            pdfsubject={Total dominator coloring of hypercubes and domination in graph prisms}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -16,9 +16,8 @@
 \newcommand{\F}{\mathbb F}
 \newcommand{\wt}{\operatorname{wt}}
 \title{Total dominator colorings of hypercubes and total co-independent domination in prisms}
-% Enter the credited human contributor(s) before a public deposit.
 \author{}
-\date{Working draft, 27 November 2026}
+\date{27 November 2026}
 
 \begin{document}
 \maketitle
@@ -64,9 +63,10 @@ For every integer $d\ge4$, one has $\td(Q_d)=\gamma_t(Q_d)+2$.
 For a general dimension, a coloring with at most $g_d+1$ colors has at
 most one color class with no common neighbor, by Gebendorfer's argument.
 If there is such a class, its complement is both a total dominating set
-and a vertex cover. We first determine the smallest size of such a
-complement on a prism. This supplies the lower bound in the coloring
-problem, including the exceptional estimate needed for $d=6$.
+and a vertex cover. We first minimize over all total dominating vertex
+covers of a prism whose complements are nonempty. This gives a lower
+bound on the size of the complement of an inactive color class, including
+the estimate needed for $d=6$.
 The earlier prediction $t_d=2^{d-2}+2$ for all $d\ge5$
 \cite[Conjecture 4.10]{kazemi14} already fails for $d=6$.
 Indeed, $g_6=14$ by the prism identity \cite{prisms} and the known
@@ -343,8 +343,10 @@ digits in the two $S_u$ rows gives seven and twelve codewords.
 
 \paragraph{AI disclosure.}
 OpenAI language models derived the extensions presented here, searched the
-literature and drafted the manuscript. Separate model instances checked
-the proofs. Computations verified the short covering certificates and
+literature and wrote the manuscript. Separate model instances checked
+the proofs. The accompanying Lean~4 formalization verifies
+Theorem~\ref{thm:prism}, including its bipartite case.
+Computations verified the short covering certificates and
 the prism results on all 814 labelled graphs of orders two through five
 without isolated vertices, including exhaustive checks of the ternary
 labels on their prisms. No independent human review has been recorded
